@@ -25,3 +25,30 @@ C:\Users\Sebo\documents\visual studio 2015\Projects\TokenService\TokenService\bi
 C:\Users\Sebo\documents\visual studio 2015\Projects\TokenService\TokenService\bin\EntityFramework.SqlServer.xml
 C:\Users\Sebo\documents\visual studio 2015\Projects\TokenService\TokenService\bin\EntityFramework6.Npgsql.xml
 C:\Users\Sebo\documents\visual studio 2015\Projects\TokenService\TokenService\bin\Npgsql.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\ApplicationInsights.config
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\TokenService.dll.config
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\TokenService.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\TokenService.pdb
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.SqlServer.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework6.Npgsql.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.DependencyCollector.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.Web.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.WindowsServer.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.ApplicationInsights.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Npgsql.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.SqlServer.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework6.Npgsql.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.DependencyCollector.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.Web.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.WindowsServer.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.ApplicationInsights.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Npgsql.xml
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.csprojResolveAssemblyReference.cache
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.dll
+D:\Projects\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.pdb
