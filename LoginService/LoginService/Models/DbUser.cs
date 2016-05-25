@@ -12,6 +12,11 @@ namespace LoginService.Models
         public string Login { get; set; }
         public string Password { get; set; }
 
+        public DbUser()
+        {
+
+        }
+
         public DbUser(int id, RequestUser requestUser)
         {
             this.Id = id;
