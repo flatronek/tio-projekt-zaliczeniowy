@@ -60,13 +60,6 @@ C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\To
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.SqlServer.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework6.Npgsql.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.Agent.Intercept.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.DependencyCollector.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.PerfCounterCollector.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.ServerTelemetryChannel.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.Web.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.AI.WindowsServer.dll
-C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.ApplicationInsights.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Npgsql.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.xml
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\EntityFramework.SqlServer.xml
@@ -78,3 +71,4 @@ C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\To
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Microsoft.ApplicationInsights.xml
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.pdb
+C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Npgsql.xml
