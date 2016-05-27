@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using RestaurantService.Models;
 
 namespace RestaurantService.DAL
 {
@@ -10,7 +11,11 @@ namespace RestaurantService.DAL
     {
         public RestaurantContext() : base("RestaurantContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
+
+        public DbSet<Restaurant> Restaurants { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -18,6 +23,5 @@ namespace RestaurantService.DAL
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<RestaurantService.Models.DbRestaurant> DbRestaurants { get; set; }
     }
 }
