@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Integration.Wcf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -6,13 +8,25 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using TokenService.DAL;
+using TokenService.DAL.LiteDbRepository;
+using TokenService.DAL.SqlRepository;
 
 namespace TokenService.WcfService
 {
 
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class TokenService : ITokenService
     {
+        public static void InitAutofac()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<TokenService>();
+            builder.RegisterType<LiteDbTokenRepository>().As<ITokenRepository>().SingleInstance();
+
+            AutofacHostFactory.Container = builder.Build();
+        }
+
         private ITokenRepository db;
 
         public TokenService(ITokenRepository tokenRepository)
