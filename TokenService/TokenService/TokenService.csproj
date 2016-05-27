@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +55,10 @@
     </Reference>
     <Reference Include="EntityFramework6.Npgsql, Version=3.0.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework6.Npgsql.3.0.7\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiteDB, Version=1.0.4.0, Culture=neutral, PublicKeyToken=5c2fff750805920e, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.1.0.4\lib\net40\LiteDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -114,8 +122,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\TokenContext.cs" />
-    <Compile Include="DAL\TokenInitializer.cs" />
+    <Compile Include="DAL\ITokenRepository.cs" />
+    <Compile Include="DAL\LiteDbRepository\LiteDbTokenRepository.cs" />
+    <Compile Include="DAL\SqlRepository\SqlTokenRepository.cs" />
+    <Compile Include="DAL\SqlRepository\TokenContext.cs" />
+    <Compile Include="DAL\SqlRepository\TokenInitializer.cs" />
     <Compile Include="WcfService\TokenService.svc.cs">
       <DependentUpon>TokenService.svc</DependentUpon>
     </Compile>

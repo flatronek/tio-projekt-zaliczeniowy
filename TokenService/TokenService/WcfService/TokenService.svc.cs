@@ -13,18 +13,22 @@ namespace TokenService.WcfService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class TokenService : ITokenService
     {
-        private TokenContext db = new TokenContext();
+        private ITokenRepository db;
+
+        public TokenService(ITokenRepository tokenRepository)
+        {
+            this.db = tokenRepository;
+        }
 
         public TokenObject createTokenForUser(int userId)
         {
-            TokenObject token = db.Tokens.Find(userId);
+            TokenObject token = db.GetAll().Find(t => t.UserId == userId);
 
             if (token == null)
             {
                 token = new TokenObject() { UserId = userId, Token = userId.ToString(), ValidityDate = "01022017" };
 
-                db.Tokens.Add(token);
-                db.SaveChanges();
+                db.Add(token);
             }
 
             return token;
@@ -32,14 +36,9 @@ namespace TokenService.WcfService
 
         public TokenObject findUserToken(string token)
         {
-            IQueryable<TokenObject> seq = db.Tokens.Where(t => t.Token.Equals(token));
+            TokenObject tokenObj = db.GetAll().FirstOrDefault(t => t.Token.Equals(token));
 
-            if (seq.Any())
-            {
-                return seq.First();
-            }
-
-            return null;
+            return tokenObj;
         }
     }
 }
