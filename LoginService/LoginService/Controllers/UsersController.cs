@@ -18,7 +18,7 @@ namespace LoginService.Controllers
     {
         private UserManager userManager = new UserManager();
 
-        // POST: api/user/login
+        // POST: users/login
         [Route("login")]
         [HttpPost]
         [ResponseType(typeof(TokenResponse))]
@@ -41,7 +41,7 @@ namespace LoginService.Controllers
             }
         }
 
-        // POST: api/register
+        // POST: users/register
         [Route("register")]
         [HttpPost]
         public IHttpActionResult RegisterUser(RequestUser user)

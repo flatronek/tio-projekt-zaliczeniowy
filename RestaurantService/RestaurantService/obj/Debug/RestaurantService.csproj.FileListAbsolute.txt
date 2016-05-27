@@ -214,3 +214,4 @@ C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\RestaurantServi
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\RestaurantService\RestaurantService\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\RestaurantService\RestaurantService\obj\Debug\RestaurantService.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\RestaurantService\RestaurantService\obj\Debug\RestaurantService.pdb
+C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\RestaurantService\RestaurantService\obj\Debug\RestaurantService.csprojResolveAssemblyReference.cache
