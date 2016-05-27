@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac.Integration.Wcf;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace TokenService.DAL
 
             context.Tokens.AddRange(tokens);
             context.SaveChanges();
+           
         }
     }
 }

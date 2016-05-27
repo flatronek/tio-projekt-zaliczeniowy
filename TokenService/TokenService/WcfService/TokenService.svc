@@ -1,1 +1,2 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TokenService.WcfService.TokenService" CodeBehind="TokenService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TokenService.WcfService.TokenService, TokenService"
+  Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" CodeBehind="TokenService.svc.cs" %>
