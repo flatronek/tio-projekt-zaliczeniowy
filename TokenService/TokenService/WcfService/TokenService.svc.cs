@@ -17,7 +17,18 @@ namespace TokenService.WcfService
 
         public TokenObject createTokenForUser(int userId)
         {
-            TokenObject token = db.Tokens.Find(userId);
+            TokenObject token = null;
+            try
+            {
+                IQueryable<TokenObject> tokens = db.Tokens.Where(x => x.UserId == userId);
+                if (tokens.Any())
+                    token = tokens.First();
+                
+            }
+            catch (Exception e)
+            {
+                e.GetBaseException();
+            }
 
             if (token == null)
             {

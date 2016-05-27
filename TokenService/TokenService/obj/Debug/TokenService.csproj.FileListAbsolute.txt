@@ -72,3 +72,6 @@ C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\To
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.dll
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.pdb
 C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\bin\Npgsql.xml
+C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.Migrations.InitialCreate.resources
+C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.csproj.GenerateResource.Cache
+C:\Users\Olek\Desktop\RestaurantProject\tio-projekt-zaliczeniowy\TokenService\TokenService\obj\Debug\TokenService.Migrations.Initial.resources

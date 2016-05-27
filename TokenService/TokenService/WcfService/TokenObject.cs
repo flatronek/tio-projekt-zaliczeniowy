@@ -12,6 +12,8 @@ namespace TokenService.WcfService
     {
         [DataMember]
         [Key]
+        public int Id { get; set; }
+        [DataMember]
         public int UserId { get; set; }
         [DataMember]
         public string Token { get; set; }
