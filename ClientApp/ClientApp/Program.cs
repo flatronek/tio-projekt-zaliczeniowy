@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ namespace ClientApp
 {
     class Program
     {
+        public static readonly string RestaurantUri = "http://localhost:50363/";
+        public static readonly string LoginUri = "http://localhost:55805";
+
         static void Main(string[] args)
         {
             while (true)
@@ -53,15 +57,14 @@ namespace ClientApp
 
         public static void rateRestaurant(int token)
         {
-            string restaurantUri = "http://localhost:50363/";
-            var container = new ODataRestaurantClient.Default.Container(new Uri(restaurantUri));
+            
+            var container = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
             //send to restaurant token, restaurantId and rate
         }
 
         public static void listRestaurants()
         {
-            string restaurantUri = "http://localhost:50363/";
-            var container = new ODataRestaurantClient.Default.Container(new Uri(restaurantUri));
+            var container = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
             Console.WriteLine("All restaurants");
             foreach (var restaurant in container.Restaurants)
             {
@@ -69,7 +72,6 @@ namespace ClientApp
             }
             Console.WriteLine();
         }
-
 
         public static void register()
         {
@@ -80,7 +82,7 @@ namespace ClientApp
             Console.WriteLine("Password: ");
             string password = Console.ReadLine();
 
-            var request = (HttpWebRequest)WebRequest.Create("http://localhost:55805/users/register");
+            var request = (HttpWebRequest)WebRequest.Create(LoginUri + "/users/register");
 
             var postData = "Name=" + name;
             postData += "Login=" + login;
@@ -116,6 +118,34 @@ namespace ClientApp
             Console.ReadLine();
         }
 
+        public static async void register2()
+        {
+            Console.WriteLine("Name");
+            string name = Console.ReadLine();
+            Console.WriteLine("Login: ");
+            string login = Console.ReadLine();
+            Console.WriteLine("Password: ");
+            string password = Console.ReadLine();
+
+            using (var client = new HttpClient())
+            {
+                var registerObject = new Dictionary<string, string>
+                {
+                    { "Name", name },
+                    { "Login", login },
+                    { "Password", password }
+                };
+
+                var content = new FormUrlEncodedContent(registerObject);
+
+                var response = await client.PostAsync(LoginUri + "/users/register", content);
+
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine("response status: {0}, content: {1}", response.StatusCode, responseString);
+            }
+        }
+
         public static int login()
         {
             int token = 0;
@@ -124,7 +154,7 @@ namespace ClientApp
             Console.WriteLine("Password: ");
             string password = Console.ReadLine();
 
-            var request = (HttpWebRequest)WebRequest.Create("http://localhost:55805/users/login");
+            var request = (HttpWebRequest)WebRequest.Create(LoginUri + "/users/login");
 
             var postData = "Login=" + login;
             postData += "&Password=" + password;
