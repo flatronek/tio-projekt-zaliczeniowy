@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.OData.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +20,14 @@ namespace RestaurantApp
                 Console.WriteLine("1. Click 'a' to add new restaurant.");
                 Console.WriteLine("2. Click 'r' to display all restaurants.");
                 Console.WriteLine("3. Clik 'd' to delete a restaurant.");
+                Console.WriteLine("4. Clik 'e' to edit a restaurant.");
 
                 var key = Console.ReadKey();
                 Console.ReadLine();
 
                 if (key.Key == ConsoleKey.A)
                 {
+
                     Console.WriteLine("Name: ");
                     string name = Console.ReadLine();
 
@@ -45,14 +48,17 @@ namespace RestaurantApp
                 else if (key.Key == ConsoleKey.D)
                 {
                     Console.WriteLine("Write Id of restaurant which you want to delete: ");
-                    var l = Console.ReadKey();
-                    Console.ReadLine();
-                    if(char.IsDigit(l.KeyChar))
-                    {
-                        int result = l.KeyChar - '0';
-                        DeleteRestaurants(result);
-                    }
-                   
+                    var k = Console.ReadLine();
+                    int n = int.Parse(k);
+                    DeleteRestaurant(n);
+                }
+                else if (key.Key == ConsoleKey.E)
+                {
+                    Console.WriteLine("Write Id of restaurant which you want to edit: ");
+                    var k = Console.ReadLine();
+                    int n = int.Parse(k);
+                    EditRestaurant(n);
+                    
                 }
                 else
                     continue;
@@ -86,7 +92,7 @@ namespace RestaurantApp
 
         }
         
-        public static void DeleteRestaurants(int id)
+        public static void DeleteRestaurant(int id)
         {
            
                 var container = new RestaurantApp.Default.Container(new Uri(RestaurantUri));
@@ -100,7 +106,37 @@ namespace RestaurantApp
                 }
             
         }
+        public static void EditRestaurant(int id)
+        {
+           
+            Console.WriteLine("Name: ");
+            string name = Console.ReadLine();
 
-        
+            Console.WriteLine("Address: ");
+            string address = Console.ReadLine();
+
+            Console.WriteLine("Description: ");
+            string description = Console.ReadLine();
+
+            var container = new RestaurantApp.Default.Container(new Uri(RestaurantUri));
+            var restaurantToChange = (from restaurant in container.Restaurants where restaurant.Id == id select restaurant).Single();
+            restaurantToChange.Name = name;
+            restaurantToChange.Address = address;
+            restaurantToChange.Description = description;
+            try
+            {
+                container.UpdateObject(restaurantToChange);
+                container.SaveChanges();
+                Console.WriteLine("Restaurant was edited successfully!");
+            }
+            catch (DataServiceRequestException ex)
+            {
+                throw new ApplicationException("An error occurred when saving changes.", ex);
+            }
+      
+
+        }
+
+
     }
 }
