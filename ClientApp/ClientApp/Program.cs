@@ -80,6 +80,7 @@ namespace ClientApp
             Console.WriteLine("Login: ");
             string login = Console.ReadLine();
             Console.WriteLine("Password: ");
+
             string password = Console.ReadLine();
 
             var request = (HttpWebRequest)WebRequest.Create(LoginUri + "/users/register");
