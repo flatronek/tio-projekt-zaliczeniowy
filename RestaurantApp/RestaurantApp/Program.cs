@@ -12,19 +12,36 @@ namespace RestaurantApp
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Adding restaurants to database.");
-            AddingAllRestaurants();
            
+      
             while (true)
             {
-                Console.WriteLine("Click 'r' to display all restaurants.");
-                Console.WriteLine("Clik 'd' to delete a restaurant.");
+                Console.WriteLine("1. Click 'a' to add new restaurant.");
+                Console.WriteLine("2. Click 'r' to display all restaurants.");
+                Console.WriteLine("3. Clik 'd' to delete a restaurant.");
+
                 var key = Console.ReadKey();
                 Console.ReadLine();
-                if (key.Key == ConsoleKey.R)
+
+                if (key.Key == ConsoleKey.A)
+                {
+                    Console.WriteLine("Name: ");
+                    string name = Console.ReadLine();
+
+                    Console.WriteLine("Address: ");
+                    string address = Console.ReadLine();
+
+                    Console.WriteLine("Description: ");
+                    string description = Console.ReadLine();
+
+                    AddingRestaurant(name, address, description);
+
+                }
+                else if (key.Key == ConsoleKey.R)
                 {
                     DisplayRestaurants();
                 }
+
                 else if (key.Key == ConsoleKey.D)
                 {
                     Console.WriteLine("Write Id of restaurant which you want to delete: ");
@@ -54,11 +71,10 @@ namespace RestaurantApp
             Console.WriteLine();
         }
 
-        public static void AddingAllRestaurants()
+        public static void AddingRestaurant(string name, string address, string description)
         {
             var container = new RestaurantApp.Default.Container(new Uri(RestaurantUri));
-            container.AddToRestaurants(new RestaurantService.Models.Restaurant() { Id = 1, Name = "Pod grusza", Address = "Krakow", Description = "Wege" });
-            container.AddToRestaurants(new RestaurantService.Models.Restaurant() { Id = 2, Name = "Pod psem", Address = "Warszawa", Description = "Dobry stek" });
+            container.AddToRestaurants(new RestaurantService.Models.Restaurant() { Name = name, Address = address, Description = description });
             var serviceResponse = container.SaveChanges();
 
             foreach (var operationResponse in serviceResponse)
