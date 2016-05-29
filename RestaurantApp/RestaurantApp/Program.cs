@@ -12,19 +12,30 @@ namespace RestaurantApp
 
         static void Main(string[] args)
         {
-            var container = new RestaurantApp.Default.Container(new Uri(RestaurantUri));
-            Console.WriteLine("Dodawanie restuaracji");
-            container.AddToRestaurants(new RestaurantService.Models.Restaurant() { Id = 1, Name = "Pod grusza", Address = "Krakow", Description = "Wege" });
-            var serviceResponse = container.SaveChanges();
-
+            Console.WriteLine("Adding restaurants to database.");
+            AddingAllRestaurants();
+           
             while (true)
             {
                 Console.WriteLine("Click 'r' to display all restaurants.");
+                Console.WriteLine("Clik 'd' to delete a restaurant.");
                 var key = Console.ReadKey();
                 Console.ReadLine();
                 if (key.Key == ConsoleKey.R)
                 {
                     DisplayRestaurants();
+                }
+                else if (key.Key == ConsoleKey.D)
+                {
+                    Console.WriteLine("Write Id of restaurant which you want to delete: ");
+                    var l = Console.ReadKey();
+                    Console.ReadLine();
+                    if(char.IsDigit(l.KeyChar))
+                    {
+                        int result = l.KeyChar - '0';
+                        DeleteRestaurants(result);
+                    }
+                   
                 }
                 else
                     continue;
@@ -42,5 +53,38 @@ namespace RestaurantApp
             }
             Console.WriteLine();
         }
+
+        public static void AddingAllRestaurants()
+        {
+            var container = new RestaurantApp.Default.Container(new Uri(RestaurantUri));
+            container.AddToRestaurants(new RestaurantService.Models.Restaurant() { Id = 1, Name = "Pod grusza", Address = "Krakow", Description = "Wege" });
+            container.AddToRestaurants(new RestaurantService.Models.Restaurant() { Id = 2, Name = "Pod psem", Address = "Warszawa", Description = "Dobry stek" });
+            var serviceResponse = container.SaveChanges();
+
+            foreach (var operationResponse in serviceResponse)
+            {
+
+                Console.WriteLine("Response: {0}", operationResponse.StatusCode);
+            }
+           
+
+        }
+        
+        public static void DeleteRestaurants(int id)
+        {
+           
+                var container = new RestaurantApp.Default.Container(new Uri(RestaurantUri));
+
+                container.Restaurants.Where(x => x.Id == id).ToList().ForEach(x => container.DeleteObject(x));
+                var serviceResponse = container.SaveChanges();
+                foreach (var operationResponse in serviceResponse)
+                {
+
+                    Console.WriteLine("Response: {0}", operationResponse.StatusCode);
+                }
+            
+        }
+
+        
     }
 }
