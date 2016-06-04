@@ -18,7 +18,7 @@ namespace ClientApp
         {
             while (true)
             {
-                Console.WriteLine("Click 'r' to register new client or 'l' to login. [enter]");
+                Console.WriteLine("Click 'r' to register new client, 'l' to login or 'q' to quit. [enter]");
                 var key = Console.ReadKey();
                 Console.ReadLine();
                 if (key.Key == ConsoleKey.R)
@@ -39,16 +39,21 @@ namespace ClientApp
                         }
                         else if (key.Key == ConsoleKey.R)
                         {
-                            Console.WriteLine("Check id of restaurant which you'd like to rate");
-                            key = Console.ReadKey();
+                            Console.ReadLine();
                             //todo
-                            //rateRestaurant(token);
+                            rateRestaurant(token);
                         }
                     }
                     else
                     {
                         continue;
                     }
+                }
+                else if (key.Key == ConsoleKey.Q)
+                {
+                    Console.WriteLine("End of game");
+                    Console.ReadKey();
+                    break;
                 }
             }
 
@@ -57,9 +62,29 @@ namespace ClientApp
 
         public static void rateRestaurant(int token)
         {
-            
+
             var container = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
             //send to restaurant token, restaurantId and rate
+            Console.WriteLine("Get id of restaurant you want to rate: [enter]");
+            var restaurantId = Console.ReadLine();
+            if (container.Restaurants.Where(x => x.Id == Int32.Parse(restaurantId)).ToList().Count() == 1)
+            {
+                var restaurant = container.Restaurants.Where(x => x.Id == Int32.Parse(restaurantId)).ToList().First();
+                Console.WriteLine("Restaurant you have choosen:");
+                Console.WriteLine("{0} : {1} : {2} : {3}", restaurant.Id, restaurant.Name, restaurant.Address, restaurant.Description);
+                Console.WriteLine("Get new rate:");
+                var rate = Console.ReadLine();
+                //var resp = container.TestFunction().GetValue();
+                //Console.WriteLine("Response to test function {0}", resp);
+                // todo
+                //var containerRates = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
+                //Console.WriteLine(containerRates.RateRestaurant(token, Int32.Parse(rate)).GetValue());
+            }
+            else
+            {
+                Console.WriteLine("Wrong id");
+            }
+            
         }
 
         public static void listRestaurants()
@@ -86,7 +111,7 @@ namespace ClientApp
             var request = (HttpWebRequest)WebRequest.Create(LoginUri + "/users/register");
 
             var postData = "Name=" + name;
-            postData += "Login=" + login;
+            postData += "&Login=" + login;
             postData += "&Password=" + password;
             var data = Encoding.ASCII.GetBytes(postData);
 
