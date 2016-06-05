@@ -19,15 +19,11 @@ namespace RestaurantService
 
             builder.EntitySet<Restaurant>("Restaurants");
 
+            builder.EntitySet<Rate>("Rates");
+
             builder.Function("TestFunction").Returns<string>();
 
-            builder.Function("TestFunction2").Returns<string>();
-
-            builder.Function("Rate").Returns<string>();
-
-            builder.Function("Rate2").Returns<string>();
-
-            builder.EntitySet<Rate>("Rates");
+            builder.Function("MockRate").Returns<string>();
 
             builder.Function("RateRestaurant").Returns<string>();
 

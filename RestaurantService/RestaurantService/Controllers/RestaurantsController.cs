@@ -25,7 +25,6 @@ namespace RestaurantService.Controllers
     public class RestaurantsController : ODataController
     {
         private RestaurantContext db = new RestaurantContext();
-        private RateContext dbRates = new RateContext();
 
         [HttpGet]
         [ODataRoute("TestFunction")]
@@ -37,11 +36,27 @@ namespace RestaurantService.Controllers
         }
 
         [HttpGet]
-        [ODataRoute("Rate2")]
-        public IHttpActionResult RateRestaurant()
+        [ODataRoute("MockRate")]
+        public IHttpActionResult MockRate()
         {
-            dbRates.Rates.Add(new Rate() { userId = 1, restaurantId = 1, score = 2 });
-            dbRates.SaveChanges();
+            db.Rates.Add(new Rate() { userId = 1, restaurantId = 1, score = 2 });
+            db.SaveChanges();
+            return Ok("Successful test");
+        }
+
+        [HttpGet]
+        [ODataRoute("Rates")]
+        public IQueryable<Rate> GetRates()
+        {
+            return db.Rates;
+        }
+
+        [HttpGet]
+        [ODataRoute("RateRestaurant")]
+        public IHttpActionResult RateRestaurant([FromODataUri] int _tokenId, int _restaurantId, int _score)
+        {
+            db.Rates.Add(new Rate() { userId = _tokenId, restaurantId = _restaurantId, score = _score });
+            db.SaveChanges();
             return Ok("Successful test");
         }
 

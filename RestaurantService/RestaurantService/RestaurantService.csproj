@@ -174,11 +174,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\RatesController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="DAL\RateContext.cs" />
     <Compile Include="DAL\RateInitializer.cs" />

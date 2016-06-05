@@ -9,7 +9,7 @@ namespace RestaurantService.DAL
 {
     public class RateContext : DbContext
     {
-        public RateContext() : base("RatesContext")
+        public RateContext() : base("RateContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;

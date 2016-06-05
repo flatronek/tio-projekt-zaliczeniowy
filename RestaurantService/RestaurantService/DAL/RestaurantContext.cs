@@ -16,6 +16,7 @@ namespace RestaurantService.DAL
         }
 
         public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Rate> Rates { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
