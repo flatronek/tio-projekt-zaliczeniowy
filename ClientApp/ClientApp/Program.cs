@@ -12,7 +12,7 @@ namespace ClientApp
     class Program
     {
         public static readonly string RestaurantUri = "http://localhost:50363/";
-        public static readonly string LoginUri = "http://localhost:55805";
+        public static readonly string LoginUri = "http://localhost:55805/";
 
         static void Main(string[] args)
         {
@@ -30,19 +30,31 @@ namespace ClientApp
                     int token = login();
                     if (token > 0)
                     {
-                        Console.WriteLine("Click 'l' to list all restaurants, 'r' to rate restaurant");
-                        key = Console.ReadKey();
-                        if (key.Key == ConsoleKey.L)
+                        while (true)
                         {
-                            listRestaurants();
-                            
+                            Console.WriteLine("Click 'l' to list all restaurants, 'r' to rate restaurant, 'a' to show rates for restaurants. 'e' to logout ");
+                            key = Console.ReadKey();
+                            if (key.Key == ConsoleKey.L)
+                            {
+                                listRestaurants();
+
+                            }
+                            else if (key.Key == ConsoleKey.R)
+                            {
+                                Console.ReadLine();
+                                //todo
+                                rateRestaurant(token);
+                            }
+                            else if (key.Key == ConsoleKey.A)
+                            {
+                                showRates();
+                            }
+                            else if (key.Key == ConsoleKey.E)
+                            {
+                                break;
+                            }
                         }
-                        else if (key.Key == ConsoleKey.R)
-                        {
-                            Console.ReadLine();
-                            //todo
-                            rateRestaurant(token);
-                        }
+
                     }
                     else
                     {
@@ -59,6 +71,27 @@ namespace ClientApp
 
         }
 
+
+        public static async void showRates()
+        {
+            var container = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
+            Console.WriteLine("Rates:");
+            Console.WriteLine("Rate : Restaurant : User");
+            foreach (var rate in container.Rates)
+            {
+                using (var client = new HttpClient())
+                {
+
+                    var response = await client.GetAsync(LoginUri + "/users/name?id=" + rate.UserId.ToString());
+
+                    var userName = await response.Content.ReadAsStringAsync();
+                
+                    Console.WriteLine("{0} : {1} : {2}", rate.Score, container.Restaurants.Where(x =>  x.Id == rate.RestaurantId).ToList().First().Name, userName);
+                }
+            }
+            Console.WriteLine();
+        }
+        
 
         public static void rateRestaurant(int token)
         {
@@ -77,8 +110,9 @@ namespace ClientApp
                 //var resp = container.TestFunction().GetValue();
                 //Console.WriteLine("Response to test function {0}", resp);
                 // todo
-                //var containerRates = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
-                //Console.WriteLine(containerRates.RateRestaurant(token, Int32.Parse(rate)).GetValue());
+                var containerRates = new ODataRestaurantClient.Default.Container(new Uri(RestaurantUri));
+                //string param = "token=" + token + "&" + "restaurantId=" + restaurant.Id + "&" + "rate=" + rate;
+                Console.WriteLine(containerRates.RateRestaurant(token.ToString(), restaurant.Id, Int32.Parse(rate)).GetValue());
             }
             else
             {

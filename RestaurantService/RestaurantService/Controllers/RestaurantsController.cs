@@ -53,51 +53,9 @@ namespace RestaurantService.Controllers
             return db.Rates;
         }
 
-        [HttpGet]
-        [ODataRoute("RateRestaurant")]
-        public IHttpActionResult RateRestaurant([FromODataUri] string token, int restaurantId, int score)
-        {
-            int userId = getUserIdByToken(token);
-            if (userId == -1)
-                NotFound();
-            Rate newRate = new Rate() { userId = userId, restaurantId = restaurantId, score = score };
-            if (RateExists(newRate)) { 
-                if (isRateDuplicate(newRate))
-                {
-                    return Ok("duplicate");
-                }
-                var oldRate = db.Rates.FirstOrDefault(i => i.restaurantId == restaurantId && i.userId == userId);
-                if(oldRate != null)
-                {
-                    oldRate.score = score;
-                    db.SaveChanges();
-                    return Ok("Updated");
-                }
-            }
-            db.Rates.Add(newRate);
-            db.SaveChanges();
-            return Ok("Added successfully");
-        }
 
 
 
-        private void deleteRate(Rate oldRate)
-        {
-            var y = (from x in db.Rates where x.id == oldRate.id select x).First();
-            db.Rates.Remove(y);
-        }
-
-        private int getUserIdByToken(string token)
-        {
-            TokenServiceClient tokenService = new TokenServiceClient();
-            try {
-                return tokenService.findUserToken(token).UserId;
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
-        }
 
         // GET: odata/Restaurants
         [EnableQuery]
@@ -231,17 +189,9 @@ namespace RestaurantService.Controllers
             return db.Restaurants.Count(e => e.Id == key) > 0;
         }
 
-        private bool RateExists(Rate rate)
-        {
-            return db.Rates.Count(x => x.userId == rate.userId && x.restaurantId == rate.restaurantId) > 0;
-        }
 
-        private bool isRateDuplicate(Rate rate)
-        {
-            return db.Rates.Count(x => x.userId == rate.userId 
-                && x.restaurantId == rate.restaurantId
-                && x.score == rate.score) > 0;
-        }
+
+
 
         private int getRateId(Rate rate)
         {

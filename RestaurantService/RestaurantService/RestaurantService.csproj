@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\RatesController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="DAL\RateContext.cs" />
     <Compile Include="DAL\RateInitializer.cs" />

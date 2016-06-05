@@ -41,6 +41,16 @@ namespace LoginService.Controllers
             }
         }
 
+        [Route("name")]
+        [HttpGet]
+        
+        public IHttpActionResult GetUserName([FromUri] int id)
+        {
+            return Ok(userManager.GetUserName(id).Login);
+        }
+
+
+
         // POST: users/register
         [Route("register")]
         [HttpPost]
@@ -60,6 +70,7 @@ namespace LoginService.Controllers
                 return BadRequest("Login is already taken.");
             }
         }
+
 
     }
 }

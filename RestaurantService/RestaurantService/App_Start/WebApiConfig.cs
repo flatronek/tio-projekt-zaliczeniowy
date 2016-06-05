@@ -25,7 +25,12 @@ namespace RestaurantService
 
             builder.Function("MockRate").Returns<string>();
 
-            builder.Function("RateRestaurant").Returns<string>();
+            builder.Function("RateCos").Returns<string>().Parameter<int>("Melement");
+
+            var func = builder.Function("RateRestaurant").Returns<string>();
+            func.Parameter<string>("Token");
+            func.Parameter<int>("RestaurantId");
+            func.Parameter<int>("Score");
 
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",

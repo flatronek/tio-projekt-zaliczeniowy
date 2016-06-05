@@ -18,6 +18,16 @@ namespace LoginService.Models
             tokenService = new TokenServiceClient();
         }
 
+        public DbUser GetUserName(int id)
+        {
+            return db.Users.Where(x => x.Id == id).ToList().First();
+        }
+
+        public List<DbUser> ListUsers()
+        {
+            return db.Users.ToList();
+        }
+
         public Boolean RegisterUser(RequestUser user)
         {
             if (db.Users.Count(u => u.Login.Equals(user.Login)) > 0)

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 2016-05-27 22:44:54
+// Generation date: 2016-06-06 00:04:33
 namespace ODataRestaurantClient.RestaurantService.Models
 {
     /// <summary>
@@ -168,6 +168,168 @@ namespace ODataRestaurantClient.RestaurantService.Models
         }
     }
     /// <summary>
+    /// There are no comments for RateSingle in the schema.
+    /// </summary>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("RateSingle")]
+    public partial class RateSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Rate>
+    {
+        /// <summary>
+        /// Initialize a new RateSingle object.
+        /// </summary>
+        public RateSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+            : base(context, path) {}
+
+        /// <summary>
+        /// Initialize a new RateSingle object.
+        /// </summary>
+        public RateSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+            : base(context, path, isComposable) {}
+
+        /// <summary>
+        /// Initialize a new RateSingle object.
+        /// </summary>
+        public RateSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Rate> query)
+            : base(query) {}
+
+    }
+    /// <summary>
+    /// There are no comments for Rate in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::Microsoft.OData.Client.Key("id")]
+    [global::Microsoft.OData.Client.OriginalNameAttribute("Rate")]
+    public partial class Rate : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new Rate object.
+        /// </summary>
+        /// <param name="ID">Initial value of Id.</param>
+        /// <param name="restaurantId">Initial value of RestaurantId.</param>
+        /// <param name="userId">Initial value of UserId.</param>
+        /// <param name="score">Initial value of Score.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        public static Rate CreateRate(int ID, int restaurantId, int userId, int score)
+        {
+            Rate rate = new Rate();
+            rate.Id = ID;
+            rate.RestaurantId = restaurantId;
+            rate.UserId = userId;
+            rate.Score = score;
+            return rate;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("id")]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this._Id = value;
+                this.OnIdChanged();
+                this.OnPropertyChanged("id");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property RestaurantId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("restaurantId")]
+        public int RestaurantId
+        {
+            get
+            {
+                return this._RestaurantId;
+            }
+            set
+            {
+                this.OnRestaurantIdChanging(value);
+                this._RestaurantId = value;
+                this.OnRestaurantIdChanged();
+                this.OnPropertyChanged("restaurantId");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        private int _RestaurantId;
+        partial void OnRestaurantIdChanging(int value);
+        partial void OnRestaurantIdChanged();
+        /// <summary>
+        /// There are no comments for Property UserId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("userId")]
+        public int UserId
+        {
+            get
+            {
+                return this._UserId;
+            }
+            set
+            {
+                this.OnUserIdChanging(value);
+                this._UserId = value;
+                this.OnUserIdChanged();
+                this.OnPropertyChanged("userId");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        private int _UserId;
+        partial void OnUserIdChanging(int value);
+        partial void OnUserIdChanged();
+        /// <summary>
+        /// There are no comments for Property Score in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("score")]
+        public int Score
+        {
+            get
+            {
+                return this._Score;
+            }
+            set
+            {
+                this.OnScoreChanging(value);
+                this._Score = value;
+                this.OnScoreChanged();
+                this.OnPropertyChanged("score");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        private int _Score;
+        partial void OnScoreChanging(int value);
+        partial void OnScoreChanged();
+        /// <summary>
+        /// This event is raised when the value of the property is changed
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The value of the property is changed
+        /// </summary>
+        /// <param name="property">property name</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
     /// Class containing all extension methods
     /// </summary>
     public static class ExtensionMethods
@@ -194,6 +356,29 @@ namespace ODataRestaurantClient.RestaurantService.Models
                 { "Id", id }
             };
             return new global::ODataRestaurantClient.RestaurantService.Models.RestaurantSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::ODataRestaurantClient.RestaurantService.Models.Rate as global::ODataRestaurantClient.RestaurantService.Models.RateSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="source">source entity set</param>
+        /// <param name="keys">dictionary with the names and values of keys</param>
+        public static global::ODataRestaurantClient.RestaurantService.Models.RateSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::ODataRestaurantClient.RestaurantService.Models.Rate> source, global::System.Collections.Generic.Dictionary<string, object> keys)
+        {
+            return new global::ODataRestaurantClient.RestaurantService.Models.RateSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::ODataRestaurantClient.RestaurantService.Models.Rate as global::ODataRestaurantClient.RestaurantService.Models.RateSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="source">source entity set</param>
+        /// <param name="id">The value of id</param>
+        public static global::ODataRestaurantClient.RestaurantService.Models.RateSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::ODataRestaurantClient.RestaurantService.Models.Rate> source,
+            int id)
+        {
+            global::System.Collections.Generic.Dictionary<string, object> keys = new global::System.Collections.Generic.Dictionary<string, object>
+            {
+                { "id", id }
+            };
+            return new global::ODataRestaurantClient.RestaurantService.Models.RateSingle(source.Context, source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(source.Context, keys)));
         }
     }
 }
@@ -285,12 +470,38 @@ namespace ODataRestaurantClient.Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
         private global::Microsoft.OData.Client.DataServiceQuery<global::ODataRestaurantClient.RestaurantService.Models.Restaurant> _Restaurants;
         /// <summary>
+        /// There are no comments for Rates in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Rates")]
+        public global::Microsoft.OData.Client.DataServiceQuery<global::ODataRestaurantClient.RestaurantService.Models.Rate> Rates
+        {
+            get
+            {
+                if ((this._Rates == null))
+                {
+                    this._Rates = base.CreateQuery<global::ODataRestaurantClient.RestaurantService.Models.Rate>("Rates");
+                }
+                return this._Rates;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::ODataRestaurantClient.RestaurantService.Models.Rate> _Rates;
+        /// <summary>
         /// There are no comments for Restaurants in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
         public void AddToRestaurants(global::ODataRestaurantClient.RestaurantService.Models.Restaurant restaurant)
         {
             base.AddObject("Restaurants", restaurant);
+        }
+        /// <summary>
+        /// There are no comments for Rates in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
+        public void AddToRates(global::ODataRestaurantClient.RestaurantService.Models.Rate rate)
+        {
+            base.AddObject("Rates", rate);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "2.4.0")]
         private abstract class GeneratedEdmModel
@@ -310,14 +521,40 @@ namespace ODataRestaurantClient.Default
         <Property Name=""Description"" Type=""Edm.String"" />
         <Property Name=""Address"" Type=""Edm.String"" />
       </EntityType>
+      <EntityType Name=""Rate"">
+        <Key>
+          <PropertyRef Name=""id"" />
+        </Key>
+        <Property Name=""id"" Type=""Edm.Int32"" Nullable=""false"" />
+        <Property Name=""restaurantId"" Type=""Edm.Int32"" Nullable=""false"" />
+        <Property Name=""userId"" Type=""Edm.Int32"" Nullable=""false"" />
+        <Property Name=""score"" Type=""Edm.Int32"" Nullable=""false"" />
+      </EntityType>
     </Schema>
     <Schema Namespace=""Default"" xmlns=""http://docs.oasis-open.org/odata/ns/edm"">
       <Function Name=""TestFunction"">
         <ReturnType Type=""Edm.String"" Unicode=""false"" />
       </Function>
+      <Function Name=""MockRate"">
+        <ReturnType Type=""Edm.String"" Unicode=""false"" />
+      </Function>
+      <Function Name=""RateCos"">
+        <Parameter Name=""Melement"" Type=""Edm.Int32"" Nullable=""false"" />
+        <ReturnType Type=""Edm.String"" Unicode=""false"" />
+      </Function>
+      <Function Name=""RateRestaurant"">
+        <Parameter Name=""Token"" Type=""Edm.String"" Unicode=""false"" />
+        <Parameter Name=""RestaurantId"" Type=""Edm.Int32"" Nullable=""false"" />
+        <Parameter Name=""Score"" Type=""Edm.Int32"" Nullable=""false"" />
+        <ReturnType Type=""Edm.String"" Unicode=""false"" />
+      </Function>
       <EntityContainer Name=""Container"">
         <EntitySet Name=""Restaurants"" EntityType=""RestaurantService.Models.Restaurant"" />
+        <EntitySet Name=""Rates"" EntityType=""RestaurantService.Models.Rate"" />
         <FunctionImport Name=""TestFunction"" Function=""Default.TestFunction"" IncludeInServiceDocument=""true"" />
+        <FunctionImport Name=""MockRate"" Function=""Default.MockRate"" IncludeInServiceDocument=""true"" />
+        <FunctionImport Name=""RateCos"" Function=""Default.RateCos"" IncludeInServiceDocument=""true"" />
+        <FunctionImport Name=""RateRestaurant"" Function=""Default.RateRestaurant"" IncludeInServiceDocument=""true"" />
       </EntityContainer>
     </Schema>
   </edmx:DataServices>
@@ -353,6 +590,32 @@ namespace ODataRestaurantClient.Default
         public global::Microsoft.OData.Client.DataServiceQuerySingle<string> TestFunction()
         {
             return this.CreateFunctionQuerySingle<string>("", "TestFunction", false);
+        }
+        /// <summary>
+        /// There are no comments for MockRate in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("MockRate")]
+        public global::Microsoft.OData.Client.DataServiceQuerySingle<string> MockRate()
+        {
+            return this.CreateFunctionQuerySingle<string>("", "MockRate", false);
+        }
+        /// <summary>
+        /// There are no comments for RateCos in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("RateCos")]
+        public global::Microsoft.OData.Client.DataServiceQuerySingle<string> RateCos(int Melement)
+        {
+            return this.CreateFunctionQuerySingle<string>("", "RateCos", false, new global::Microsoft.OData.Client.UriOperationParameter("Melement", Melement));
+        }
+        /// <summary>
+        /// There are no comments for RateRestaurant in the schema.
+        /// </summary>
+        [global::Microsoft.OData.Client.OriginalNameAttribute("RateRestaurant")]
+        public global::Microsoft.OData.Client.DataServiceQuerySingle<string> RateRestaurant(string Token, int RestaurantId, int Score)
+        {
+            return this.CreateFunctionQuerySingle<string>("", "RateRestaurant", false, new global::Microsoft.OData.Client.UriOperationParameter("Token", Token),
+                    new global::Microsoft.OData.Client.UriOperationParameter("RestaurantId", RestaurantId),
+                    new global::Microsoft.OData.Client.UriOperationParameter("Score", Score));
         }
     }
 }
