@@ -27,5 +27,10 @@ namespace RestaurantService.Models
         public int restaurantId { get; set; }
         public int userId { get; set; }
         public int score { get; set; }
+
+        public static implicit operator Rate(List<Rate> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,6 +9,8 @@ using System.Web.OData;
 using System.Web.OData.Routing;
 using RestaurantService.DAL;
 using RestaurantService.Models;
+using RestaurantService.TokenService;
+using System.Data.Entity;
 
 namespace RestaurantService.Controllers
 {
@@ -53,11 +55,48 @@ namespace RestaurantService.Controllers
 
         [HttpGet]
         [ODataRoute("RateRestaurant")]
-        public IHttpActionResult RateRestaurant([FromODataUri] int _tokenId, int _restaurantId, int _score)
+        public IHttpActionResult RateRestaurant([FromODataUri] string token, int restaurantId, int score)
         {
-            db.Rates.Add(new Rate() { userId = _tokenId, restaurantId = _restaurantId, score = _score });
+            int userId = getUserIdByToken(token);
+            if (userId == -1)
+                NotFound();
+            Rate newRate = new Rate() { userId = userId, restaurantId = restaurantId, score = score };
+            if (RateExists(newRate)) { 
+                if (isRateDuplicate(newRate))
+                {
+                    return Ok("duplicate");
+                }
+                var oldRate = db.Rates.FirstOrDefault(i => i.restaurantId == restaurantId && i.userId == userId);
+                if(oldRate != null)
+                {
+                    oldRate.score = score;
+                    db.SaveChanges();
+                    return Ok("Updated");
+                }
+            }
+            db.Rates.Add(newRate);
             db.SaveChanges();
-            return Ok("Successful test");
+            return Ok("Added successfully");
+        }
+
+
+
+        private void deleteRate(Rate oldRate)
+        {
+            var y = (from x in db.Rates where x.id == oldRate.id select x).First();
+            db.Rates.Remove(y);
+        }
+
+        private int getUserIdByToken(string token)
+        {
+            TokenServiceClient tokenService = new TokenServiceClient();
+            try {
+                return tokenService.findUserToken(token).UserId;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         // GET: odata/Restaurants
@@ -190,6 +229,36 @@ namespace RestaurantService.Controllers
         private bool RestaurantExists(int key)
         {
             return db.Restaurants.Count(e => e.Id == key) > 0;
+        }
+
+        private bool RateExists(Rate rate)
+        {
+            return db.Rates.Count(x => x.userId == rate.userId && x.restaurantId == rate.restaurantId) > 0;
+        }
+
+        private bool isRateDuplicate(Rate rate)
+        {
+            return db.Rates.Count(x => x.userId == rate.userId 
+                && x.restaurantId == rate.restaurantId
+                && x.score == rate.score) > 0;
+        }
+
+        private int getRateId(Rate rate)
+        {
+            return db.Rates.First(x => x.userId == rate.userId && x.restaurantId == rate.restaurantId).userId;
+        }
+
+        private int getRateScoreById(int id)
+        {
+            try
+            {
+                int newScore = db.Rates.First(x => x.userId == id).score;
+                return newScore >= 0 ? newScore : -1;
+            }
+            catch
+            {
+                return -1;
+            }
         }
     }
 }
