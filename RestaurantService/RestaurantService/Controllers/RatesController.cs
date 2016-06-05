@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.OData;
-using System.Web.OData.Routing;
+using System.Web.Http.ModelBinding;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Routing;
 using RestaurantService.DAL;
 using RestaurantService.Models;
+using System.Web.OData.Routing;
 
 namespace RestaurantService.Controllers
 {
@@ -19,48 +24,38 @@ namespace RestaurantService.Controllers
     using System.Web.Http.OData.Extensions;
     using RestaurantService.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<Restaurant>("Restaurants");
+    builder.EntitySet<Rate>("Rates");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class RestaurantsController : ODataController
+    public class RatesController : ODataController
     {
-        private RestaurantContext db = new RestaurantContext();
-        private RateContext dbRates = new RateContext();
+        private RateContext db = new RateContext();
 
         [HttpGet]
-        [ODataRoute("TestFunction")]
-        public IHttpActionResult TestFunction()
+        [ODataRoute("Rate")]
+        public IHttpActionResult RateRestaurant()
         {
-            db.Restaurants.Add(new Restaurant() { Name = "aa2", Description = "b2", Address = "Cz2" });
+            db.Rates.Add(new Rate() { userId=1, restaurantId=1, score=2 });
             db.SaveChanges();
             return Ok("Successful test");
         }
 
-        [HttpGet]
-        [ODataRoute("Rate2")]
-        public IHttpActionResult RateRestaurant()
-        {
-            dbRates.Rates.Add(new Rate() { userId = 1, restaurantId = 1, score = 2 });
-            dbRates.SaveChanges();
-            return Ok("Successful test");
-        }
-
-        // GET: odata/Restaurants
+        // GET: odata/Rates
         [EnableQuery]
-        public IQueryable<Restaurant> GetRestaurants()
+        public IQueryable<Rate> GetRates()
         {
-            return db.Restaurants;
+            return db.Rates;
         }
 
-        // GET: odata/Restaurants(5)
+        // GET: odata/Rates(5)
         [EnableQuery]
-        public SingleResult<Restaurant> GetRestaurant([FromODataUri] int key)
+        public SingleResult<Rate> GetRate([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Restaurants.Where(restaurant => restaurant.Id == key));
+            return SingleResult.Create(db.Rates.Where(rate => rate.id == key));
         }
 
-        // PUT: odata/Restaurants(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Restaurant> patch)
+        // PUT: odata/Rates(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Rate> patch)
         {
             Validate(patch.GetEntity());
 
@@ -69,13 +64,13 @@ namespace RestaurantService.Controllers
                 return BadRequest(ModelState);
             }
 
-            Restaurant restaurant = await db.Restaurants.FindAsync(key);
-            if (restaurant == null)
+            Rate rate = await db.Rates.FindAsync(key);
+            if (rate == null)
             {
                 return NotFound();
             }
 
-            patch.Put(restaurant);
+            patch.Put(rate);
 
             try
             {
@@ -83,7 +78,7 @@ namespace RestaurantService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RestaurantExists(key))
+                if (!RateExists(key))
                 {
                     return NotFound();
                 }
@@ -93,26 +88,26 @@ namespace RestaurantService.Controllers
                 }
             }
 
-            return Updated(restaurant);
+            return Updated(rate);
         }
 
-        // POST: odata/Restaurants
-        public async Task<IHttpActionResult> Post(Restaurant restaurant)
+        // POST: odata/Rates
+        public async Task<IHttpActionResult> Post(Rate rate)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Restaurants.Add(restaurant);
+            db.Rates.Add(rate);
             await db.SaveChangesAsync();
 
-            return Created(restaurant);
+            return Created(rate);
         }
 
-        // PATCH: odata/Restaurants(5)
+        // PATCH: odata/Rates(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Restaurant> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Rate> patch)
         {
             Validate(patch.GetEntity());
 
@@ -121,13 +116,13 @@ namespace RestaurantService.Controllers
                 return BadRequest(ModelState);
             }
 
-            Restaurant restaurant = await db.Restaurants.FindAsync(key);
-            if (restaurant == null)
+            Rate rate = await db.Rates.FindAsync(key);
+            if (rate == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(restaurant);
+            patch.Patch(rate);
 
             try
             {
@@ -135,7 +130,7 @@ namespace RestaurantService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RestaurantExists(key))
+                if (!RateExists(key))
                 {
                     return NotFound();
                 }
@@ -145,19 +140,19 @@ namespace RestaurantService.Controllers
                 }
             }
 
-            return Updated(restaurant);
+            return Updated(rate);
         }
 
-        // DELETE: odata/Restaurants(5)
+        // DELETE: odata/Rates(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
-            Restaurant restaurant = await db.Restaurants.FindAsync(key);
-            if (restaurant == null)
+            Rate rate = await db.Rates.FindAsync(key);
+            if (rate == null)
             {
                 return NotFound();
             }
 
-            db.Restaurants.Remove(restaurant);
+            db.Rates.Remove(rate);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -172,9 +167,9 @@ namespace RestaurantService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RestaurantExists(int key)
+        private bool RateExists(int key)
         {
-            return db.Restaurants.Count(e => e.Id == key) > 0;
+            return db.Rates.Count(e => e.id == key) > 0;
         }
     }
 }
